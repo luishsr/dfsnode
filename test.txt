@@ -1,1 +1,0 @@
-Hey man! This is Luis and this is a file stored on a distributed file system implemented in Go.
