@@ -1,3 +1,4 @@
+// Set up a simple HTTP server to handle file uploads and downloads
 package main
 
 import (
@@ -7,9 +8,10 @@ import (
 	"os"
 )
 
+// Runs the node
 func main() {
 
-	// Set up a simple HTTP server to handle file uploads and downloads
+	// HandleFunc handles upload requests (PUT)
 	http.HandleFunc("/upload/", func(w http.ResponseWriter, r *http.Request) {
 		fileName := r.URL.Path[len("/upload/"):]
 		file, err := os.Create(fileName)
@@ -28,6 +30,7 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
+	// HandleFunc handles upload requests (GET)
 	http.HandleFunc("/download/", func(w http.ResponseWriter, r *http.Request) {
 		fileName := r.URL.Path[len("/download/"):]
 		file, err := os.Open(fileName)
@@ -47,7 +50,9 @@ func main() {
 
 	// Start the HTTP server on port 8000
 	port := 8000
+
 	fmt.Printf("Node server starting on port %d...\n", port)
+
 	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 
 	if err != nil {
