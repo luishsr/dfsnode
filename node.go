@@ -1,4 +1,4 @@
-package dfsnode
+package main
 
 import (
 	"fmt"
